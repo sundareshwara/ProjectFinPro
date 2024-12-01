@@ -1,0 +1,109 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #28a745; /* Professional green tone */
+    color: white;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Material Calculation Section */
+.material-calculation-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Blue for contrast */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.calculate-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Material Details Section */
+.material-details-section {
+    margin-top: 20px;
+}
+
+.material-details-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.material-details-section th, .material-details-section td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.material-details-section th {
+    background-color: #007bff;
+    color: white;
+}
+
+.material-details-section td {
+    background-color: #f8f9fa;
+}
+
+.material-details-section tr:nth-child(even) {
+    background-color: #e9ecef;
+}

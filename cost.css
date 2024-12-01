@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.input-section, .output-section {
+    margin-bottom: 30px;
+}
+
+label, p {
+    font-size: 16px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select, button {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.material-quality label {
+    margin-right: 20px;
+}
+
+#chart-section {
+    text-align: center;
+}
+
+canvas {
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+#total-cost {
+    font-weight: bold;
+    color: #28a745;
+}
+
+#suggestions-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#suggestions-list li {
+    background-color: #f1f1f1;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}

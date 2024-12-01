@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Estimation</title>
+    <link rel="stylesheet" href="materials.css">
+</head>
+<body>
+    <header>
+        <h1>Material Estimation Tool</h1>
+        <p>Estimate quantities and costs for your construction project.</p>
+    </header>
+
+    <main class="material-calculation-container">
+        <section class="input-section">
+            <h2>Enter Project Details</h2>
+            <div class="form-group">
+                <label for="area">Enter Total Area (in sq. ft):</label>
+                <input type="number" id="area" placeholder="E.g., 1200" min="1">
+            </div>
+            <div class="form-group">
+                <label for="constructionType">Select Construction Type:</label>
+                <select id="constructionType">
+                    <option value="residential">Residential</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="industrial">Industrial</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Select Location:</label>
+                <select id="location">
+                    <option value="urban">Urban</option>
+                    <option value="rural">Rural</option>
+                </select>
+            </div>
+
+            <button onclick="calculateMaterials()" class="calculate-btn">Calculate Materials</button>
+        </section>
+
+        <section id="material-details" class="material-details-section">
+            <!-- Material estimation will be displayed here -->
+        </section>
+
+        <section id="cost-estimation" class="cost-estimation-section">
+            <!-- Cost estimation will be displayed here -->
+        </section>
+    </main>
+
+    <script src="materials.js"></script>
+</body>
+</html>

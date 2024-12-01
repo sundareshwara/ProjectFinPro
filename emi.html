@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="emi.css">
+</head>
+<body>
+    <header>
+        <h1>EMI Calculator</h1>
+        <p>Adjust the sliders to calculate your EMI instantly.</p>
+    </header>
+
+    <main class="emi-container">
+        <section class="sliders-section">
+            <div class="slider-group">
+                <label for="principal">Principal Amount (₹): <span id="principal-value">500000</span></label>
+                <input type="range" id="principal" min="100000" max="5000000" step="50000" value="500000">
+            </div>
+        
+            <div class="slider-group">
+                <label for="duration">Loan Duration (Years): <span id="duration-value">5</span></label>
+                <input type="range" id="duration" min="1" max="30" step="1" value="5">
+            </div>
+            
+            <div class="slider-group">
+                <label for="interest">Interest Rate (%): <span id="interest-value">7.5</span></label>
+                <input type="range" id="interest" min="1" max="20" step="0.1" value="7.5">
+            </div>
+        
+            <button id="reset-btn">Reset Sliders</button>
+        </section>
+        
+        <section class="results-section">
+            <p>EMI (₹): <span id="emi">0</span></p>
+            <p>Total Payment (₹): <span id="total-payment">0</span></p>
+            <p>Total Interest (₹): <span id="total-interest">0</span></p>
+            <p>Amortization Schedule:</p>
+            <table border="1" style="width: 100%; text-align: center;">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>EMI (₹)</th>
+                        <th>Interest Paid (₹)</th>
+                        <th>Principal Paid (₹)</th>
+                        <th>Remaining Principal (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="amortization-schedule"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="emi.js"></script>
+</body>
+</html>

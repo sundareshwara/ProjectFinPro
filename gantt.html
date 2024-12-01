@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gantt Chart for Square Footage</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { packages: ['gantt'] });
+
+    // Function to draw the Gantt chart
+    function drawChart(sqFt, startDate) {
+      const container = document.getElementById('gantt_chart');
+      const chart = new google.visualization.Gantt(container);
+
+      const data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Resource');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      // Convert input date to a JavaScript Date object
+      const start = new Date(startDate);
+
+      // Define tasks and proportional durations based on sq ft
+      const baseDurationPerSqFt = 0.03; // Adjusted: 0.03 days per sq ft
+      const durations = {
+        basement: Math.ceil(sqFt * baseDurationPerSqFt),        // ~45 days for 1500 sq ft
+        plinthBeam: Math.ceil(sqFt * baseDurationPerSqFt * 0.5), // ~22 days
+        flooring: Math.ceil(sqFt * baseDurationPerSqFt * 0.3),  // ~13 days
+        ccWork: Math.ceil(sqFt * baseDurationPerSqFt * 0.3),    // ~13 days
+        roofSlab: Math.ceil(sqFt * baseDurationPerSqFt * 0.5),  // ~22 days
+        brickwork: Math.ceil(sqFt * baseDurationPerSqFt * 0.7), // ~31 days
+        tiling: Math.ceil(sqFt * baseDurationPerSqFt * 0.25),   // ~11 days
+        wiring: Math.ceil(sqFt * baseDurationPerSqFt * 0.2),    // ~9 days
+        plumbing: Math.ceil(sqFt * baseDurationPerSqFt * 0.3),  // ~13 days
+        doorsWindows: Math.ceil(sqFt * baseDurationPerSqFt * 0.2), // ~9 days
+      };
+
+      // Add tasks to the Gantt chart
+      data.addRows([
+        ['1', 'Basement', null, start, addDays(start, durations.basement), null, 100, null],
+        ['2', 'Plinth Beam', null, addDays(start, durations.basement), addDays(start, durations.basement + durations.plinthBeam), null, 0, '1'],
+        ['3', 'Flooring', null, addDays(start, durations.basement + durations.plinthBeam), addDays(start, durations.basement + durations.plinthBeam + durations.flooring), null, 0, '2'],
+        ['4', 'CC Work', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork), null, 0, '3'],
+        ['5', 'Roof Slab', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab), null, 0, '4'],
+        ['6', 'Brickwork & Plastering', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork), null, 0, '5'],
+        ['7', 'Tiling', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling), null, 0, '6'],
+        ['8', 'Electric Wiring', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling + durations.wiring), null, 0, '7'],
+        ['9', 'Plumbing', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling + durations.wiring), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling + durations.wiring + durations.plumbing), null, 0, '8'],
+        ['10', 'Doors & Windows', null, addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling + durations.wiring + durations.plumbing), addDays(start, durations.basement + durations.plinthBeam + durations.flooring + durations.ccWork + durations.roofSlab + durations.brickwork + durations.tiling + durations.wiring + durations.plumbing + durations.doorsWindows), null, 0, '9'],
+      ]);
+
+      // Calculate the total duration
+      const totalDuration = Object.values(durations).reduce((sum, val) => sum + val, 0);
+
+      // Add the options for the chart
+      const options = {
+        height: 600,
+        gantt: {
+          trackHeight: 30,
+          barHeight: 20,
+          criticalPathEnabled: true,
+          criticalPathStyle: {
+            stroke: '#e64a19',
+            strokeWidth: 2,
+          },
+        },
+      };
+
+      chart.draw(data, options);
+
+      // Display the consolidated duration message
+      document.getElementById('consolidated_duration').innerText = `Total Duration: ${totalDuration} days. Best wishes for your project!`;
+    }
+
+    // Utility function to add days to a date
+    function addDays(date, days) {
+      const result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
+
+    // Form submission handler
+    function generateChart(event) {
+      event.preventDefault(); // Prevent form reload
+      const sqFt = parseFloat(document.getElementById('sq_ft').value);
+      const startDate = document.getElementById('start_date').value;
+      if (sqFt > 0 && startDate) {
+        google.charts.setOnLoadCallback(() => drawChart(sqFt, startDate));
+      } else {
+        alert('Please enter valid inputs!');
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #gantt_chart {
+      width: 100%;
+      height: 600px;
+      margin-top: 20px;
+    }
+
+    .message {
+     
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gantt Chart for Construction Based on Square Footage</h1>
+
+  <!-- Input Form -->
+  <form id="gantt_form" onsubmit="generateChart(event)">
+    <label for="sq_ft">Enter Square Footage:</label>
+    <input type="number" id="sq_ft" name="sq_ft" required>
+    
+    <label for="start_date">Enter Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required>
+    
+    <button type="submit">Generate Gantt Chart</button>
+  </form>
+
+  <!-- Gantt Chart -->
+  <div id="gantt_chart"></div>
+
+  <!-- Message Displaying Total Duration -->
+  <div id="consolidated_duration" class="message"></div>
+
+</body>
+</html>

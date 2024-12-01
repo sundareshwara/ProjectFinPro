@@ -1,0 +1,203 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #e9f1f7;
+    color: #333;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+    background-color: #3e5c6e;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Navigation Bar Styles */
+nav {
+    background-color: #374d62;
+    padding: 15px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style-type: none;
+}
+
+nav ul li {
+    font-size: 1.3rem;
+}
+
+nav ul li a {
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* Hero Section */
+.hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(19, 18, 18);
+    padding: 20px;
+}
+
+.hero-text h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    font-size: 1.4rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Home Section Styles */
+.home-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.home-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tools {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.tool-card {
+    background-color: #fff;
+    width: 250px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tool-card .card-icon {
+    margin-bottom: 20px;
+    font-size: 60px;
+    color: #3e5c6e;
+}
+
+.tool-card:hover .card-icon {
+    color: #ff6f61;
+}
+
+.tool-card h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.tool-card p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #3e5c6e;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Welcome Section */
+.welcome-message {
+    background-color: #f9f9f9;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.welcome-message p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.welcome-message strong {
+    font-weight: bold;
+    color: #0044cc;
+}
+
+/* Responsive Styles for Devices Below 768px */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    nav ul li {
+        font-size: 1.1rem;
+    }
+
+    .tools {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tool-card {
+        width: 80%;
+    }
+}
